@@ -17,13 +17,6 @@ public class ContaService {
 
     private final SimpleRestTemplate simpleRestTemplate = new SimpleRestTemplate();
 
-    public Conta criaConta(Conta conta) {
-        if (!existePessoaNaListaDeProcurados(conta.getNome())) {
-            return contaRepository.save(conta);
-        }
-        return new Conta();
-    }
-
     public List<Conta> listaTodasContas() {
         return contaRepository.findAll();
     }
@@ -41,6 +34,13 @@ public class ContaService {
 
     public void deletaConta(long id) {
         contaRepository.deleteById(id);
+    }
+
+    public Conta criaConta(Conta conta) {
+        if (!existePessoaNaListaDeProcurados(conta.getNome())) {
+            return contaRepository.save(conta);
+        }
+        return null;
     }
 
     private boolean existePessoaNaListaDeProcurados(String nome) {

@@ -27,17 +27,24 @@ public class ContaController {
         return new ResponseEntity<Conta>(contaService.listaContaPorId(id), HttpStatus.OK);
     }
 
-    @PostMapping
+//    @PostMapping("/cria")
+//    public ResponseEntity<Conta> criaConta (@RequestBody Conta conta) {
+//        return new ResponseEntity<>(contaService.criaConta(conta), HttpStatus.OK);
+//    }
+
+    @PostMapping("/cria")
     public ResponseEntity<Conta> criaConta (@RequestBody Conta conta) {
-        return new ResponseEntity<>(contaService.criaConta(conta), HttpStatus.OK);
+        if (contaService.criaConta(conta) != null) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping
+    @PutMapping("/atualiza")
     public ResponseEntity<Conta> atualizaContaPorId (@RequestBody Conta conta) {
         return new ResponseEntity<>(contaService.atualizaConta(conta), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/deleta/{id}")
     public ResponseEntity<Conta> deletaContaPorId (@PathVariable long id) {
         contaService.deletaConta(id);
         return new ResponseEntity<>(HttpStatus.OK);
