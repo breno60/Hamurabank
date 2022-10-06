@@ -1,4 +1,4 @@
-package com.bancoamerica.hamurabank.Client;
+package com.bancoamerica.hamurabank.client;
 
 import lombok.Data;
 

@@ -1,7 +1,7 @@
 package com.bancoamerica.hamurabank.services;
 
-import com.bancoamerica.hamurabank.Client.SimpleRestTemplate;
-import com.bancoamerica.hamurabank.Client.Pessoa;
+import com.bancoamerica.hamurabank.client.SimpleRestTemplate;
+import com.bancoamerica.hamurabank.client.Pessoa;
 import com.bancoamerica.hamurabank.models.Conta;
 import com.bancoamerica.hamurabank.repositories.ContaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,8 @@ public class ContaService {
     @Autowired
     private ContaRepository contaRepository;
 
-    private final SimpleRestTemplate simpleRestTemplate = new SimpleRestTemplate();
+    @Autowired
+    private SimpleRestTemplate simpleRestTemplate;
 
     public List<Conta> listaTodasContas() {
         return contaRepository.findAll();

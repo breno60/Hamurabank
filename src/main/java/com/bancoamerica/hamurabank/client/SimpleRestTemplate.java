@@ -1,10 +1,12 @@
-package com.bancoamerica.hamurabank.Client;
+package com.bancoamerica.hamurabank.client;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+@Component
 public class SimpleRestTemplate {
 
 

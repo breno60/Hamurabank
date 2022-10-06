@@ -1,6 +1,5 @@
 package com.bancoamerica.hamurabank.controllers;
 
-import com.bancoamerica.hamurabank.Client.Pessoa;
 import com.bancoamerica.hamurabank.models.Conta;
 import com.bancoamerica.hamurabank.services.ContaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,21 +26,22 @@ public class ContaController {
         return new ResponseEntity<Conta>(contaService.listaContaPorId(id), HttpStatus.OK);
     }
 
-//    @PostMapping("/cria")
-//    public ResponseEntity<Conta> criaConta (@RequestBody Conta conta) {
-//        return new ResponseEntity<>(contaService.criaConta(conta), HttpStatus.OK);
-//    }
-
     @PostMapping("/cria")
     public ResponseEntity<Conta> criaConta (@RequestBody Conta conta) {
-        if (contaService.criaConta(conta) != null) {
-            return new ResponseEntity<>(HttpStatus.OK);
+        Conta contaRetorno = contaService.criaConta(conta);
+
+        if (contaRetorno != null) {
+            return new ResponseEntity<>(contaRetorno, HttpStatus.CREATED);
         } return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("/atualiza")
     public ResponseEntity<Conta> atualizaContaPorId (@RequestBody Conta conta) {
-        return new ResponseEntity<>(contaService.atualizaConta(conta), HttpStatus.OK);
+        Conta contaRetorno = contaService.atualizaConta(conta);
+
+        if (contaRetorno != null) {
+            return new ResponseEntity<>(contaRetorno, HttpStatus.OK);
+        } return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/deleta/{id}")
